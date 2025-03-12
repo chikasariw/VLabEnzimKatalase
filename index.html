@@ -2,11 +2,11 @@
 <html lang="en" class="h-100" data-bs-theme="auto">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Website VLab Enzim Katalase">
-    <meta name="author" content="Chika Sari Wibowo, chikasariw@gmail.com">
+    <meta name="author" content="chikasariw@gmail.com & masandofami@gmail.com">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧪%3C/text%3E%3C/svg%3E">
     <title>VLab Enzim Katalase</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,9 +14,9 @@
 <body class="d-flex flex-column h-100">
     <header>
         <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md fixed-top bg-body-tertiary">
             <div class="container d-flex justify-content-center align-items-center">
-                <a class="navbar-brand" href="#"><i class="bi bi-asterisk fs-7 me-3"></i>Virtual Lab Enzim Katalase</a>
+                <a class="navbar-brand" href="#"><i class="me-3">🧪</i>Virtual Lab Enzim Katalase</a>
             </div>
         </nav>
     </header>
@@ -25,140 +25,115 @@
     <main class="flex-shrink-0">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8 pe-lg-4">
-                    <div class="card rounded-5 bg-light border-0 mb-3">
-                        <div class="card-body">
-                            <div class="tabung-container">
-                                <div class="tabung">
-                                    <div class="skala">
-                                        <span>10 ml</span>
-                                        <span>9</span>
-                                        <span>8</span>
-                                        <span>7</span>
-                                        <span>6</span>
-                                        <span>5</span>
-                                        <span>4</span>
-                                        <span>3</span>
-                                        <span>2</span>
-                                        <span>1</span>
-                                    </div>
-                                    <div class="isi-hati"></div>
-                                </div>
-                                <p class="pt-3 fs-7">Tabung 1</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3  pe-lg-5">
                     <div class="row d-flex justify-content-between align-items-center">
                         <div class="col-auto">
                             <h4>Enzim Katalase</h4>
                         </div>
                         <div class="col-auto">
-                            <a href="#" class="btn btn-outline-dark btn-sm px-3 rounded-4">Pelajari Materi <i class="bi bi-caret-right-fill ps-2"></i></a>
+                            <a href="#" class="btn btn-outline-secondary btn-sm px-3 rounded-4">Pelajari Materi <i
+                                    class="bi bi-caret-right-fill ps-2"></i></a>
                         </div>
                     </div>
-                    <hr class="border border-dark-subtle mx-0 px-0">
+                    <hr class="border border-primary-subtle mx-0 px-0">
                     <div class="row d-flex justify-content-between align-items-center">
                         <div class="col-12">
                             <h6>Tambah Senyawa</h6>
                         </div>
-                        <div class="overflow-auto py-3" style="max-width: 400px;">
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-dark text-nowrap rounded-5 btn-sm"><i class="bi bi-patch-plus pe-2"></i>H2O2</button>
-                                <button class="btn btn-dark text-nowrap rounded-5 btn-sm"><i class="bi bi-patch-plus pe-2"></i>NAOH</button>
-                                <button class="btn btn-dark text-nowrap rounded-5 btn-sm"><i class="bi bi-patch-plus pe-2"></i>HCL</button>
-                                <button class="btn btn-dark text-nowrap rounded-5 btn-sm"><i class="bi bi-patch-plus pe-2"></i>Sianida (CN)</button>
-                            </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary text-nowrap rounded-5 flex-grow-1" data-bs-toggle="modal"
+                            data-bs-target="#NAOH">
+                                <i class="bi bi-patch-plus pe-2"></i>NAOH
+                            </button>
+                            <button class="btn btn-primary text-nowrap rounded-5 flex-grow-1" data-bs-toggle="modal"
+                            data-bs-target="#HCL">
+                                <i class="bi bi-patch-plus pe-2"></i>HCL
+                            </button>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary text-nowrap rounded-5 mt-2" data-bs-toggle="modal"
+                            data-bs-target="#H2O2"><i
+                                    class="bi bi-patch-plus pe-2"></i>H2O2</button>
                         </div>
                     </div>
-                    <hr class="border border-dark-subtle mx-0 px-0">
-                    <div class="row d-flex justify-content-between align-items-center">
+                    <hr class="border border-primary-subtle mx-0 px-0">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-secondary text-nowrap rounded-5 mt-2">Cek Kadar Oksigen</button>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row d-flex justify-content-between align-items-center mt-5 mt-lg-0">
                         <div class="col-auto">
-                            <h6>Tabung Reaksi</h6>
+                            <h5>Tabung Reaksi</h5>
                         </div>
                         <div class="col-auto">
-                            <a href="#" class="btn btn-dark btn-sm px-3 rounded-4">Tambah Tabung Gas <i class="bi bi-plus ps-2"></i></a>
+                            <button class="btn btn-secondary px-3 rounded-5" data-bs-toggle="modal"
+                                data-bs-target="#TambahMedia">Tambah Tabung Media<i
+                                    class="bi bi-plus ps-2"></i></button>
                         </div>
-
-                        <div class="overflow-auto my-3 bg-light rounded-5" style="max-height: 300px;">
-                            <div class="col-12">
-                                <div class="card mt-3 rounded-4">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <p>Tabung 1</p>
-                                        <button class="btn btn-outline-danger btn-sm rounded-5"><i class="bi bi-trash3"></i></button>
+                        <hr class="border border-primary-subtle mx-0 px-0 mt-3">
+                        <div class="overflow-auto my-3 rounded-5 bg-body-tertiary p-3">
+                            <div class="d-flex gap-3 flex-nowrap">
+                                <div class="card rounded-5 h-auto card-tabung active" style="min-width: 280px;">
+                                    <div class="card-header rounded-top-5 mb-0 mt-2">
+                                        <h6 class="text-center">Tabung Media 1</h6>
                                     </div>
                                     <div class="card-body">
-                                        <select class="form-select rounded-5" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                          </select>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <img class="tabung" src="asset/images/TabungMedia_2.svg" />
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="range" class="text-start w-100">Suhu</label>
+                                                <div style="display: flex; align-items: center; gap: 10px;"
+                                                    class="mt-3">
+                                                    <input type="range" class="form-range form-range-suhu" min="0"
+                                                        max="5" step="1" id="customRange2">
+                                                    <div class="range-labels-suhu">
+                                                        <span>🔥 5</span>
+                                                        <span>🌡️ 4</span>
+                                                        <span>🌤️ 3</span>
+                                                        <span>❄️ 2</span>
+                                                        <span>🧊 1</span>
+                                                        <span>🥶 0</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer rounded-bottom-5 d-flex justify-content-center">
+                                        <h7 class="badge rounded-pill text-bg-primary">PH: 8</h7>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="card mt-3 rounded-4">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <p>Tabung 1</p>
-                                        <button class="btn btn-outline-danger btn-sm rounded-5"><i class="bi bi-trash3"></i></button>
+                                <div class="card rounded-5 h-auto card-tabung" style="min-width: 280px;">
+                                    <div class="card-header rounded-top-5 mb-0 mt-2">
+                                        <h6 class="text-center">Tabung Media 2</h6>
                                     </div>
                                     <div class="card-body">
-                                        <select class="form-select rounded-5" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                          </select>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <img class="tabung" src="asset/images/TabungMedia_2.svg" />
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="range" class="text-start w-100">Suhu</label>
+                                                <div style="display: flex; align-items: center; gap: 10px;"
+                                                    class="mt-3">
+                                                    <input type="range" class="form-range form-range-suhu" min="0"
+                                                        max="5" step="1" id="customRange2">
+                                                    <div class="range-labels-suhu">
+                                                        <span>🔥 5</span>
+                                                        <span>🌡️ 4</span>
+                                                        <span>🌤️ 3</span>
+                                                        <span>❄️ 2</span>
+                                                        <span>🧊 1</span>
+                                                        <span>🥶 0</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="card mt-3 rounded-4">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <p>Tabung 1</p>
-                                        <button class="btn btn-outline-danger btn-sm rounded-5"><i class="bi bi-trash3"></i></button>
-                                    </div>
-                                    <div class="card-body">
-                                        <select class="form-select rounded-5" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                          </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="card mt-3 rounded-4">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <p>Tabung 1</p>
-                                        <button class="btn btn-outline-danger btn-sm rounded-5"><i class="bi bi-trash3"></i></button>
-                                    </div>
-                                    <div class="card-body">
-                                        <select class="form-select rounded-5" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                          </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="card mt-3 rounded-4">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <p>Tabung 1</p>
-                                        <button class="btn btn-outline-danger btn-sm rounded-5"><i class="bi bi-trash3"></i></button>
-                                    </div>
-                                    <div class="card-body">
-                                        <select class="form-select rounded-5" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                          </select>
+                                    <div class="card-footer rounded-bottom-5 d-flex justify-content-center">
+                                        <h7 class="badge rounded-pill text-bg-primary">PH: 8</h7>
                                     </div>
                                 </div>
                             </div>
@@ -169,13 +144,111 @@
         </div>
     </main>
 
-    <footer class="footer mt-auto py-3 bg-body-tertiary">
+    <footer class="footer mt-auto py-3 border-top">
         <div class="container">
-            <p class="text-center text-body-secondary border-top pt-3">© 2025 VLab Enzim Katalase</p>
+            <p class="text-center text-body-secondary pt-3">© 2025 VLab Enzim Katalase</p>
         </div>
     </footer>
 
+    <!-- Modal -->
+    <div class="modal fade" id="TambahMedia" tabindex="-1" aria-labelledby="TambahMedia" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content p-3 rounded-4 border-0">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="TambahMedia">Tambah Tabung Media</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="customRange2" class="form-label">Volume Hati</label>
+                    <input type="range" class="form-range" min="1" max="3" id="customRange2" value="2" step="1"
+                        oninput="volumeValue.value = this.value">
+                    <div class="d-flex justify-content-between mt-2">
+                        <span>X1</span>
+                        <span>X2</span>
+                        <span>X3</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-5">Tambah Tabung Media</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="modal fade" id="HCL" tabindex="-1" aria-labelledby="HCL" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content p-3 rounded-4 border-0">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="HCL">Tambah Senyawa HCL</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="customRange2" class="form-label">Volume HCL</label>
+                    <input type="range" class="form-range" min="1" max="3" id="customRange2" value="2" step="1"
+                        oninput="volumeValue.value = this.value">
+                    <div class="d-flex justify-content-between mt-2">
+                        <span>X1</span>
+                        <span>X2</span>
+                        <span>X3</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-5">Tambah Senyawa HCL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="NAOH" tabindex="-1" aria-labelledby="NAOH" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content p-3 rounded-4 border-0">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="NAOH">Tambah Senyawa NAOH</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="customRange2" class="form-label">Volume NAOH</label>
+                    <input type="range" class="form-range" min="1" max="3" id="customRange2" value="2" step="1"
+                        oninput="volumeValue.value = this.value">
+                    <div class="d-flex justify-content-between mt-2">
+                        <span>X1</span>
+                        <span>X2</span>
+                        <span>X3</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-5">Tambah Senyawa NAOH</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="H2O2" tabindex="-1" aria-labelledby="H2O2" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content p-3 rounded-4 border-0">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="H2O2">Tambah Senyawa H2O2</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="customRange2" class="form-label">Volume H2O2</label>
+                    <input type="range" class="form-range" min="1" max="3" id="customRange2" value="2" step="1"
+                        oninput="volumeValue.value = this.value">
+                    <div class="d-flex justify-content-between mt-2">
+                        <span>X1</span>
+                        <span>X2</span>
+                        <span>X3</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-5">Tambah Senyawa H2O2</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 
