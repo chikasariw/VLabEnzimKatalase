@@ -14,6 +14,7 @@
     --bs-dark: #20263C;
     --bs-light: #fafafa;
     --bg-body: #fefefe;
+
     --default-font: 'Inter';
     scroll-behavior: smooth;
 }
@@ -30,10 +31,10 @@ main {
 
 .navbar {
     padding: 1rem;
-}
 
-.navbar a {
-    font-size: 18px;
+    a {
+        font-size: 18px;
+    }
 }
 
 .bg-light {
@@ -90,6 +91,7 @@ main {
     --bs-btn-disabled-border-color: var(--bs-primary);
     --bs-gradient: none;
 }
+
 .btn-outline-secondary {
     --bs-btn-color: var(--bs-secondary);
     --bs-btn-border-color: var(--bs-secondary);
@@ -148,59 +150,156 @@ main {
     flex-direction: column;
     justify-content: space-between;
     height: 210px;
+
+    span {
+        font-size: 14px;
+    }
 }
 
-.range-labels-suhu span {
-    font-size: 14px;
-}
+/* Card Tabung */
 
-/* tabung  */
-.tabung {
-    width: 96px;
-}
-
-/* card tabung  */
-.overflow-auto {
-    overflow-x: auto;
+.container-tabung {
+    overflow: auto;
     white-space: nowrap;
     padding-bottom: 10px;
+    border-radius: 1rem;
+    border: 3px solid #f8f9fb;
+
+    .card-tabung {
+        min-width: 280px !important;
+        padding-top: 80px;
+        border: 3px dashed var(--bs-primary-active) !important;
+        border-top: unset !important;
+        border-radius: 0 0 1rem 1rem;
+        transition: 0.2s ease-out;
+        transition-property: border, background;
+
+        .tabung {
+            width: 96px;
+        }
+
+        .card-title {
+            max-width: 190px;
+            display: block;
+            overflow-x: auto;
+            font-size: 1rem;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.5);
+
+            &::-webkit-scrollbar {
+                display: none; /* Chrome, Safari, and Opera */
+              }
+        }
+
+        .card-header,
+        .card-footer {
+            background: transparent;
+            border-color: #E2E8FA;
+        }
+
+        &.active {
+            background: linear-gradient(180deg, rgba(239, 242, 254, 0), rgba(239, 242, 254, 1)) !important;
+            border: 3px solid var(--bs-secondary) !important;
+            border-top: unset !important;
+        }
+
+        &:hover {
+            background: linear-gradient(180deg, rgba(239, 242, 254, 0), rgba(239, 242, 254, 1)) !important;
+            background-color: var(--bs-primary-hover);
+            border: 3px dashed #bac9f7 !important;
+            border-top: unset !important;
+        }
+
+        .btn-close {
+            pointer-events: fill;
+        }
+    }
 }
 
-.card.card-tabung {
-    border: 3px solid var(--bs-primary-active) !important;
+
+/* Interfaces Inside Cards */
+
+.interface {
+    position: relative;
+    width: 100%;
+    min-height: 2rem;
+
+    & > * {
+        position: absolute;
+    }
+    
+    .lidi {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: 0.3s ease;
+        transition-property: bottom;
+
+        &.active {
+            bottom: -150px;
+        }
+    }
+
+    .pipet {
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: 0.3s ease;
+        transition-property: top;
+        width: 40px;
+    }
+
+    .droplet {
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        animation: 2s droplet 0.25s ease-in infinite;
+    }
+    
+    .h202 {
+        bottom: -215px;
+        left: 88px;
+        transform-origin: top right;
+        transform: translateX(-100px) scaleX(-100%) rotate(68deg);
+        width: 90px;
+        z-index: 99;
+        
+        &.active {
+            animation: tuang linear 2s infinite;
+        }
+    }
 }
 
-.card-header,
-.card-footer {
-    background-color: #fff !important;
-    border-color: #E2E8FA;
+@keyframes tuang {
+    0% {
+        transform: translateX(-100px) scaleX(-100%) rotate(68deg);
+    }
+    25% {
+        transform: translateX(-100px) scaleX(-100%) rotate(150deg);        
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100px) scaleX(-100%) rotate(150deg);
+        opacity: 0;
+    }
 }
 
-
-/* active card  */
-
-.active.card.card-tabung {
-    background-color: var(--bs-primary-active);
-    border: 3px solid var(--bs-secondary) !important;
-}
-
-.active .card-header {
-    background-color: var(--bs-primary-active) !important;
-    border-color: #bac9f7;
-
-}
-
-.active .card-footer {
-    background-color: var(--bs-primary-active) !important;
-    border-color: #bac9f7;
-}
-
-.card.card-tabung:hover {
-    background-color: var(--bs-primary-hover);
-    border: 3px solid #bac9f7 !important;
-}
-
-.card.card-tabung:hover .card-header,
-.card.card-tabung:hover .card-footer {
-    background-color: var(--bs-primary-hover) !important;
+@keyframes droplet {
+    0% {
+        bottom: 68px;
+        width: 0;
+    }
+    25% {
+        bottom: 34px;
+        width: 25px;
+        opacity: 1;
+    }
+    100% {
+        bottom: -120px;
+        width: 25px;
+        opacity: 0;
+    }
 }
