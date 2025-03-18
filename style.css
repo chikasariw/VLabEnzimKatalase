@@ -156,6 +156,14 @@ main {
     }
 }
 
+/* buttons */
+#buttons button {
+    &.active {
+        outline: 2px dashed white;
+        outline-offset: -2px;
+    }
+}
+
 /* Card Tabung */
 
 .container-tabung {
