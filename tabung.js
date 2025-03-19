@@ -121,6 +121,7 @@ class Tabung
                 this.interface.querySelector('img.h2o2').classList.add('active')
                 setTimeout(() => {
                     this.react();
+                    this.interface.innerHTML = '';
                     if (this.result) this.interface.innerHTML = `<img class="bubble height-${this.amount}" src="asset/images/bubble${this.result}.gif" alt="bubble ${this.result}">`
                     this.container.classList.remove('active');
                     this.container.classList.add('inactive');
@@ -276,9 +277,8 @@ class Tabung
             // Add the result rate if neither subtrat or h2o2 is added
             rate += ((this.amount-1)*0.5) + ((this.chemistryAmount-1)*0.5);
             
-
             // Subtract the result if the ph was not in netral state (Ph 7)
-            rate -= (Math.abs(this.ph - 7) * 0.2);
+            rate -= (Math.abs(this.ph - 7) * 0.8);
 
             // Subtract the result if the temperatur was not in normal state (37°C)
             rate -= ((Math.abs(this.celcius - 37) / 2) * 0.2);
