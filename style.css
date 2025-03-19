@@ -156,6 +156,12 @@ main {
     background-color: var(--bs-secondary) !important;
 }
 
+.logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 auto;
+}
+
 /* suhu slider  */
 
 .form-range.form-range-suhu {
