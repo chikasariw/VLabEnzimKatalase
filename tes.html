@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getOutput(ph, temperature) {
+            let gelembungGas = "";
+            let nyalaBaraApi = "";
+          
+            // Keterangan pH
+            if (ph >= 6 && ph <= 8) {
+              gelembungGas = "++++";
+              nyalaBaraApi = "++++";
+            } else if ((ph >= 5 && ph < 6) || (ph > 8 && ph <= 9)) {
+              gelembungGas = "+++";
+              nyalaBaraApi = "+++";
+            } else if ((ph >= 4 && ph < 5) || (ph > 9 && ph <= 10)) {
+              gelembungGas = "++";
+              nyalaBaraApi = "++";
+            } else if ((ph >= 3 && ph < 4) || (ph > 10 && ph <= 11)) {
+              gelembungGas = "+";
+              nyalaBaraApi = "+";
+            } else {
+              gelembungGas = "-";
+              nyalaBaraApi = "-";
+            }
+          
+            // Keterangan Suhu
+            if (temperature >= 30 && temperature <= 45) {
+              gelembungGas += " / ++++";
+              nyalaBaraApi += " / ++++";
+            } else if ((temperature >= 20 && temperature < 30) || (temperature > 45 && temperature <= 55)) {
+              gelembungGas += " / +++";
+              nyalaBaraApi += " / +++";
+            } else if ((temperature >= 10 && temperature < 20) || (temperature > 55 && temperature <= 70)) {
+              gelembungGas += " / ++";
+              nyalaBaraApi += " / ++";
+            } else if ((temperature >= -13 && temperature < 10) || (temperature > 70 && temperature <= 87)) {
+              gelembungGas += " / +";
+              nyalaBaraApi += " / +";
+            } else {
+              gelembungGas += " / -";
+              nyalaBaraApi += " / -";
+            }
+          
+            return { gelembungGas, nyalaBaraApi };
+          }
+          
+          // Contoh penggunaan
+          let phValue = 7;
+          let temperatureValue = 37;
+          let output = getOutput(phValue, temperatureValue);
+          console.log("pH:", phValue, ", Suhu:", temperatureValue);
+          console.log("Gelembung Gas:", output.gelembungGas);
+          console.log("Nyala Bara Api:", output.nyalaBaraApi);
+          
+          phValue = 3;
+          temperatureValue = 80;
+          output = getOutput(phValue, temperatureValue);
+          console.log("\npH:", phValue, ", Suhu:", temperatureValue);
+          console.log("Gelembung Gas:", output.gelembungGas);
+          console.log("Nyala Bara Api:", output.nyalaBaraApi);
+          
+          phValue = 9;
+          temperatureValue = 15;
+          output = getOutput(phValue, temperatureValue);
+          console.log("\npH:", phValue, ", Suhu:", temperatureValue);
+          console.log("Gelembung Gas:", output.gelembungGas);
+          console.log("Nyala Bara Api:", output.nyalaBaraApi);
+          
+          phValue = 1;
+          temperatureValue = 100;
+          output = getOutput(phValue, temperatureValue);
+          console.log("\npH:", phValue, ", Suhu:", temperatureValue);
+          console.log("Gelembung Gas:", output.gelembungGas);
+          console.log("Nyala Bara Api:", output.nyalaBaraApi);
+    </script>
+</body>
+</html>
