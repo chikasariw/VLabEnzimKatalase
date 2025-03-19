@@ -234,7 +234,7 @@ main {
         transform: translateX(-50%);
         transition: 0.3s ease;
         transition-property: bottom;
-
+        
         &.active {
             bottom: -150px;
         }
