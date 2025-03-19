@@ -16,6 +16,7 @@ function resetButtonAksi() {
         item.setCelciusMode(0);
         item.setNAOHmode(0);
         item.setHCLmode(0);
+        item.setH2O2mode(0);
     });
 }
 
@@ -99,6 +100,10 @@ document.querySelectorAll('button.btn-submit').forEach(btn => {
                     }
                 })
                 break;
+            case "oxygen-mode":
+                document.getElementById('oxygen-mode').classList.add('active');
+
+                break;
             case "naoh-mode":
                 document.getElementById('naoh-mode').classList.add('active');
 
@@ -115,6 +120,10 @@ document.querySelectorAll('button.btn-submit').forEach(btn => {
                 break;
             case "h2o2-mode":
                 document.getElementById('h2o2-mode').classList.add('active');
+
+                list_tabung.forEach(item => {
+                    item.setH2O2mode(1, parseInt(modalChemistry.querySelector('input#amount-chemistry').value));
+                });
                 break;
             default:
                 console.error('invalid option!');
