@@ -212,7 +212,7 @@ main {
             border-top: unset !important;
         }
 
-        &:hover {
+        &:not(.active):hover {
             background: linear-gradient(180deg, rgba(239, 242, 254, 0), rgba(239, 242, 254, 1)) !important;
             background-color: var(--bs-primary-hover);
             border: 3px dashed #bac9f7 !important;
@@ -267,7 +267,7 @@ main {
         animation: 2s droplet 0.25s ease-in forwards;
     }
     
-    .h202 {
+    .h2o2 {
         bottom: -215px;
         left: 88px;
         transform-origin: top right;
@@ -275,19 +275,38 @@ main {
         width: 90px;
         z-index: 99;
         
+        & ~ img.droplet {
+            animation: unset;
+        }
+
         &.active {
             animation: tuang linear 2s forwards;
+            
+            & ~ img.droplet {
+                animation: 2s droplet 0.25s ease-in forwards;
+            }
         }
     }
 
     .bubble {
         width: calc(100% - 50px) !important;
         background: url("asset/images/bubble2.gif");
-        bottom: -150px;
         left: 50%;
         transform: translateX(-50%);
         width: 90px;
         z-index: 99;
+        
+        &.height-1 {
+            bottom: -200px;
+        }
+
+        &.height-2 {
+            bottom: -175px;
+        }
+
+        &.height-3 {
+            bottom: -150px;
+        }
     }
 }
 

@@ -18,7 +18,7 @@ class Tabung
         this.naohMode = 0;
         this.hclMode = 0;
         this.celciusMode = 0;
-        this.isReacted = 0;
+        this.reactMode = 0;
 
         this.init = this.init.bind(this);
         this.delete = this.delete.bind(this);
@@ -67,8 +67,12 @@ class Tabung
             }
             
             if (this.naohMode === 1) {
+                window.list_tabung.forEach(item => {
+                    item.container.classList.remove('active');
+                    item.setNAOHmode(1, this.chemistryAmount);
+                });
+                
                 this.container.classList.add('active');
-                window.list_tabung.forEach(item => item.setNAOHmode(1));
                 this.setNAOHmode(2);
             } else if (this.naohMode === 2) {
                 this.naohMode = 3;
@@ -81,8 +85,12 @@ class Tabung
             }
 
             if (this.hclMode === 1) {
+                window.list_tabung.forEach(item => {
+                    item.container.classList.remove('active');
+                    item.setHCLmode(1, this.chemistryAmount);
+                });
+                
                 this.container.classList.add('active');
-                window.list_tabung.forEach(item => item.setHCLmode(1));
                 this.setHCLmode(2);
             } else if (this.hclMode === 2) {
                 this.hclMode = 3;
@@ -92,6 +100,24 @@ class Tabung
                     this.container.classList.remove('active');
                     this.setHCLmode(1, this.chemistryAmount);
                 }, 2000);
+            }
+
+            if (this.reactMode === 1) {
+                window.list_tabung.forEach(item => {
+                    item.container.classList.remove('active');
+                    item.setH2O2mode(1, this.chemistryAmount);
+                });
+                
+                this.container.classList.add('active');
+                this.setH2O2mode(2);
+            } else if (this.reactMode === 2) {
+                this.reactMode = 3;
+                this.interface.querySelector('img.h2o2').classList.add('active')
+                setTimeout(() => {
+                    // this.react()
+                    this.container.classList.remove('active');
+                    this.setHCLmode(3);
+                }, 2250);
             }
         });
 
@@ -115,7 +141,7 @@ class Tabung
             this.checkMode == 0 &&
             this.naohMode == 0 &&
             this.hclMode == 0 &&
-            this.isReacted == 0
+            this.reactMode == 0
         ) {
             this.celciusMode = 1;
             this.parent.querySelectorAll('.card-tabung').forEach(container => {
@@ -140,12 +166,11 @@ class Tabung
     setNAOHmode(mode = 1, chemistryAmount = 1)
     {
         if (
-            mode &&
-            this.checkMode == 0 &&
-            (this.naohMode == 0 || this.naohMode == 3) &&
+            mode == 1 &&
             this.hclMode == 0 &&
             this.celciusMode == 0 &&
-            this.isReacted == 0
+            this.reactMode == 0 &&
+            this.checkMode == 0
         ) {
             this.chemistryAmount = chemistryAmount;
             this.naohMode = 1;
@@ -168,12 +193,11 @@ class Tabung
     setHCLmode(mode = 1, chemistryAmount = 1)
     {
         if (
-            mode &&
-            this.checkMode == 0 &&
-            (this.hclMode == 0 || this.hclMode == 3) &&
+            mode == 1 &&
             this.naohMode == 0 &&
             this.celciusMode == 0 &&
-            this.isReacted == 0
+            this.reactMode == 0 &&
+            this.checkMode == 0 
         ) {
             this.chemistryAmount = chemistryAmount;
             this.hclMode = 1;
@@ -193,9 +217,43 @@ class Tabung
         this.container.querySelector('.ph-value').innerText = this.ph;
     }
 
+    setH2O2mode(mode = 1, chemistryAmount = 1)
+    {
+        if (
+            mode == 1 &&
+            this.hclMode == 0 &&
+            this.naohMode == 0 &&
+            this.celciusMode == 0 &&
+            this.reactMode != 3 &&
+            this.checkMode == 0
+        ) {
+            this.chemistryAmount = chemistryAmount;
+            this.reactMode = 1;
+            this.interface.innerHTML = '';
+        } else if (mode == 2 && this.reactMode == 1) {
+            this.reactMode = 2;
+            this.interface.innerHTML = `
+                <img class="h2o2" src="asset/images/Tuang_h202.svg" alt="Tuang h2O2">
+                <img class="droplet" src="asset/images/Tetes_H20H2.svg" alt="Tetes H2O2">
+            `;
+        } else if (!mode && this.reactMode !== 0 && this.reactMode !== 3) {
+            this.chemistryAmount = 0;
+            this.reactMode = 0;
+            this.interface.innerHTML = '';
+        }
+    }
+
     delete()
     {
         this.active = false;
+        
+        for (let [i, val] of window.list_tabung.entries()) {
+            if (val === this) {
+                window.list_tabung.splice(i, 1);
+                break;
+            }
+        }
+
         this.container.remove();
     }
 
