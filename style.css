@@ -259,8 +259,14 @@ main {
             border: 3px solid var(--bs-secondary) !important;
             border-top: unset !important;
         }
+        
+        &.inactive {
+            background: linear-gradient(180deg, rgba(239, 242, 254, 0), rgb(240, 241, 244)) !important;
+            border: 3px dashed var(--bs-tertiary-color) !important;
+            border-top: unset !important;
+        }
 
-        &:not(.active):hover {
+        &:not(.active, .inactive):hover {
             background: linear-gradient(180deg, rgba(239, 242, 254, 0), rgba(239, 242, 254, 1)) !important;
             background-color: var(--bs-primary-hover);
             border: 3px dashed #bac9f7 !important;
@@ -288,7 +294,7 @@ main {
     .lidi {
         bottom: 0;
         left: 50%;
-        height: 300px;
+        width: 5px;
         transform: translateX(-50%);
         transition: 0.3s ease;
         transition-property: bottom;

@@ -20,11 +20,17 @@ class Tabung
         this.celciusMode = 0;
         this.reactMode = 0;
 
+        this.result = null;
+
         this.init = this.init.bind(this);
         this.delete = this.delete.bind(this);
         this.setCelciusMode = this.setCelciusMode.bind(this);
         this.updateTemperature = this.updateTemperature.bind(this);
         this.setNAOHmode = this.setNAOHmode.bind(this);
+        this.addPH = this.addPH.bind(this);
+        this.setNAOHmode = this.setNAOHmode.bind(this);
+        this.subtractPH = this.subtractPH.bind(this);
+        this.setH2O2mode = this.setH2O2mode.bind(this);
 
         this.init()
     }
@@ -81,7 +87,7 @@ class Tabung
                     this.addPH()
                     this.container.classList.remove('active');
                     this.setNAOHmode(1, this.chemistryAmount);
-                }, 2000);
+                }, 2250);
             }
 
             if (this.hclMode === 1) {
@@ -99,7 +105,7 @@ class Tabung
                     this.subtractPH()
                     this.container.classList.remove('active');
                     this.setHCLmode(1, this.chemistryAmount);
-                }, 2000);
+                }, 2250);
             }
 
             if (this.reactMode === 1) {
@@ -114,10 +120,27 @@ class Tabung
                 this.reactMode = 3;
                 this.interface.querySelector('img.h2o2').classList.add('active')
                 setTimeout(() => {
-                    // this.react()
+                    this.react();
+                    if (this.result) this.interface.innerHTML = `<img class="bubble height-${this.amount}" src="asset/images/bubble${this.result}.gif" alt="bubble ${this.result}">`
                     this.container.classList.remove('active');
-                    this.setHCLmode(3);
-                }, 2250);
+                    this.container.classList.add('inactive');
+                }, 2500);
+            }
+
+            if (this.checkMode === 1) {
+                window.list_tabung.forEach(item => {
+                    item.setCheckMode(1);
+                });
+
+                this.setCheckMode(2);
+            } else if (this.checkMode === 2) {
+                this.checkMode = 3;
+                let lidi = this.interface.querySelector('img.lidi');
+                lidi.classList.add('active');
+                lidi.setAttribute('src', `asset/images/Lidi_${this.result+1}.svg`);
+            } else if (this.checkMode === 3) {
+                this.checkMode = 2;
+                this.interface.querySelector('img.lidi').classList.remove('active');
             }
         });
 
@@ -240,6 +263,62 @@ class Tabung
             this.chemistryAmount = 0;
             this.reactMode = 0;
             this.interface.innerHTML = '';
+        }
+    }
+
+    react() 
+    {
+        if (this.reactMode == 3 && !this.result) {
+            
+            // Normal result rate
+            let rate = 3;
+            
+            // Add the result rate if neither subtrat or h2o2 is added
+            rate += ((this.amount-1)*0.5) + ((this.chemistryAmount-1)*0.5);
+            
+
+            // Subtract the result if the ph was not in netral state (Ph 7)
+            rate -= (Math.abs(this.ph - 7) * 0.2);
+
+            // Subtract the result if the temperatur was not in normal state (37°C)
+            rate -= ((Math.abs(this.celcius - 37) / 2) * 0.2);
+
+            // Update the result
+            if (rate <= 0) {
+                this.result = 0;
+            } else if (rate > 0 && rate <= 1) {
+                this.result = 1;
+            } else if (rate > 1 && rate <= 2) {
+                this.result = 2;
+            } else if (rate > 2 && rate <= 3) {
+                this.result = 3;
+            } else {
+                this.result = 4;
+            }
+
+            // Log the result
+            console.log("rate: " + rate);
+            console.log("result: " + this.result);   
+        }
+    }
+
+    setCheckMode(mode = 1) 
+    {
+        if (
+            mode == 1 &&
+            this.hclMode == 0 &&
+            this.naohMode == 0 &&
+            this.celciusMode == 0 &&
+            this.reactMode == 3
+        ) {
+            this.checkMode = 1;
+            this.interface.querySelector('img.lidi')?.remove();
+        } else if (mode == 2 && this.checkMode == 1) {
+            this.checkMode = 2;
+            this.interface.innerHTML += `<img class="lidi" src="asset/images/Lidi_1.svg" alt="lidi">`;
+        } else if (!mode && this.checkMode !== 0) {
+            this.checkMode = 0;
+            this.interface.querySelector('img.lidi')?.remove();
         }
     }
 
