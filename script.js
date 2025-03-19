@@ -5,15 +5,17 @@ let action = null;
 let amount = null;
 
 const containerTabung = document.querySelector('.container-tabung > div');
-let list_tabung = [];
+window.list_tabung = [];
 
 function resetButtonAksi() {
     document.querySelectorAll('#buttons button').forEach(btn => {
         btn.classList.remove('active');
     });
 
-    list_tabung.forEach(item => {
-        item.setCelciusMode(false);
+    list_tabung.forEach(item => { 
+        item.setCelciusMode(0);
+        item.setNAOHmode(0);
+        item.setHCLmode(0);
     });
 }
 
@@ -21,6 +23,18 @@ function resetSelectedTabung() {
     containerTabung.querySelectorAll('.card-tabung').forEach(item => {
         item.classList.remove('active');
     });
+}
+
+function addTube(val = 1, tubeName = '') {
+    let tabung = document.createElement('div');
+    tabung.setAttribute('class', 'card-tabung card');
+    containerTabung.appendChild(tabung);
+
+    list_tabung.push(new Tabung({
+        container: tabung, 
+        amount: val,
+        name: tubeName || `Tabung ${list_tabung.length + 1}`,
+    }));
 }
 
 // data-bs-toggle="modal" data-bs-target="#modal-celcius"
@@ -43,24 +57,20 @@ document.getElementById('h2o2-mode').addEventListener("click", function() {
     modalChemistry.querySelector('.modal-title').innerHTML = 'Tambah Senyawa H2O2';
 });
 
-document.getElementById('celcius-mode').addEventListener("click", function() {
-    action = 'celcius-mode'
-    
-    if (!this.classList.contains('active')) {
-        resetButtonAksi();
-        this.classList.add('active');
-
-        list_tabung.forEach(item => {
-            item.setCelciusMode(true);
-        });
-    }
-
-});
-
 document.getElementById('oxygene-mode').addEventListener("click", function() {
     resetButtonAksi();
     action = 'oxygene-mode'
     this.classList.add('active');
+});
+
+document.getElementById('celcius-mode').addEventListener("click", function() {
+    resetButtonAksi();
+    action = 'celcius-mode'
+    this.classList.add('active');
+
+    list_tabung.forEach(item => {
+        item.setCelciusMode(1);
+    });
 });
 
 document.getElementById('add-tube').addEventListener("click", function() {
@@ -74,18 +84,10 @@ document.querySelectorAll('button.btn-submit').forEach(btn => {
     btn.addEventListener("click", function() {
         switch (action) {
             case "add-tube":
-                let tabung = document.createElement('div');
-                tabung.setAttribute('class', 'card-tabung card');
-                containerTabung.appendChild(tabung);
-
                 let val = parseInt(modalAdd.querySelector('input#amount-subtrat').value);
-                let name = modalAdd.querySelector('input#tube-name').value || `Tabung ${list_tabung.length+1}`;
+                let name = modalAdd.querySelector('input#tube-name').value;
 
-                list_tabung.push(new Tabung({
-                    container: tabung, 
-                    amount: val,
-                    name: name
-                }));
+                addTube(val, name);
                 break;
             case "celcius-mode":
                 let selectedTabung = document.querySelector('.card-tabung.active');
@@ -98,10 +100,21 @@ document.querySelectorAll('button.btn-submit').forEach(btn => {
                 })
                 break;
             case "naoh-mode":
+                document.getElementById('naoh-mode').classList.add('active');
+
+                list_tabung.forEach(item => {
+                    item.setNAOHmode(1, parseInt(modalChemistry.querySelector('input#amount-chemistry').value));
+                });
                 break;
             case "hcl-mode":
+                document.getElementById('hcl-mode').classList.add('active');
+
+                list_tabung.forEach(item => {
+                    item.setHCLmode(1, parseInt(modalChemistry.querySelector('input#amount-chemistry').value));
+                });
                 break;
             case "h2o2-mode":
+                document.getElementById('h2o2-mode').classList.add('active');
                 break;
             default:
                 console.error('invalid option!');
@@ -115,4 +128,8 @@ document.querySelectorAll('.modal button[data-bs-dismiss="modal"]').forEach(btn 
 
 document.querySelector('input#degree').addEventListener('input', function() {
     document.querySelector('span#degree-indicator').innerText = -13 + parseInt(this.value);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    addTube();
 });

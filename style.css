@@ -264,7 +264,7 @@ main {
         left: 50%;
         transform: translateX(-50%);
         opacity: 0;
-        animation: 2s droplet 0.25s ease-in infinite;
+        animation: 2s droplet 0.25s ease-in forwards;
     }
     
     .h202 {
@@ -276,7 +276,7 @@ main {
         z-index: 99;
         
         &.active {
-            animation: tuang linear 2s infinite;
+            animation: tuang linear 2s forwards;
         }
     }
 
@@ -288,10 +288,6 @@ main {
         transform: translateX(-50%);
         width: 90px;
         z-index: 99;
-        
-        &.active {
-            animation: tuang linear 2s infinite;
-        }
     }
 }
 
