@@ -17,6 +17,7 @@ function resetButtonAksi() {
         item.setNAOHmode(0);
         item.setHCLmode(0);
         item.setH2O2mode(0);
+        item.setCheckMode(0);
     });
 }
 
@@ -62,6 +63,10 @@ document.getElementById('oxygene-mode').addEventListener("click", function() {
     resetButtonAksi();
     action = 'oxygene-mode'
     this.classList.add('active');
+
+    list_tabung.forEach(item => {
+        item.setCheckMode(1);
+    });
 });
 
 document.getElementById('celcius-mode').addEventListener("click", function() {
@@ -99,10 +104,6 @@ document.querySelectorAll('button.btn-submit').forEach(btn => {
                         item.updateTemperature(temperature);
                     }
                 })
-                break;
-            case "oxygen-mode":
-                document.getElementById('oxygen-mode').classList.add('active');
-
                 break;
             case "naoh-mode":
                 document.getElementById('naoh-mode').classList.add('active');
