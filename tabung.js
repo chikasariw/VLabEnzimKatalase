@@ -177,7 +177,7 @@ class Tabung
             this.interface.innerHTML = '';
         } else if (mode == 2 && this.naohMode == 1) {
             this.naohMode = 2;
-            this.interface.innerHTML = `<img class="pipet" src="asset/images/pipet_NaoH.svg" alt="pipet NAOH">`;
+            this.interface.innerHTML = `<img class="pipet" src="asset/images/Pipet_NaoH.svg" alt="pipet NAOH">`;
         } else if (!mode && this.naohMode !== 0) {
             this.chemistryAmount = 0;
             this.naohMode = 0;
@@ -204,7 +204,7 @@ class Tabung
             this.interface.innerHTML = '';
         } else if (mode == 2 && this.hclMode == 1) {
             this.hclMode = 2;
-            this.interface.innerHTML = `<img class="pipet" src="asset/images/pipet_HCL.svg" alt="pipet HCL">`;
+            this.interface.innerHTML = `<img class="pipet" src="asset/images/Pipet_HCL.svg" alt="pipet HCL">`;
         } else if (!mode && this.hclMode !== 0) {
             this.chemistryAmount = 0;
             this.hclMode = 0;
@@ -233,7 +233,7 @@ class Tabung
         } else if (mode == 2 && this.reactMode == 1) {
             this.reactMode = 2;
             this.interface.innerHTML = `
-                <img class="h2o2" src="asset/images/Tuang_h202.svg" alt="Tuang h2O2">
+                <img class="h2o2" src="asset/images/Tuang_H202.svg" alt="Tuang h2O2">
                 <img class="droplet" src="asset/images/Tetes_H20H2.svg" alt="Tetes H2O2">
             `;
         } else if (!mode && this.reactMode !== 0 && this.reactMode !== 3) {
