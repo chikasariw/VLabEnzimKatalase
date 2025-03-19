@@ -156,10 +156,19 @@ main {
     }
 }
 
+/* buttons */
+#buttons button {
+    &.active {
+        outline: 2px dashed white;
+        outline-offset: -2px;
+    }
+}
+
 /* Card Tabung */
 
 .container-tabung {
     overflow: auto;
+    min-height: 567px;
     white-space: nowrap;
     padding-bottom: 10px;
     border-radius: 1rem;
@@ -187,8 +196,8 @@ main {
             color: rgba(0, 0, 0, 0.5);
 
             &::-webkit-scrollbar {
-                display: none; /* Chrome, Safari, and Opera */
-              }
+                display: none;
+            }
         }
 
         .card-header,
@@ -231,12 +240,13 @@ main {
     .lidi {
         bottom: 0;
         left: 50%;
+        height: 300px;
         transform: translateX(-50%);
         transition: 0.3s ease;
         transition-property: bottom;
         
         &.active {
-            bottom: -150px;
+            bottom: -140px;
         }
     }
 
@@ -262,6 +272,20 @@ main {
         left: 88px;
         transform-origin: top right;
         transform: translateX(-100px) scaleX(-100%) rotate(68deg);
+        width: 90px;
+        z-index: 99;
+        
+        &.active {
+            animation: tuang linear 2s infinite;
+        }
+    }
+
+    .bubble {
+        width: calc(100% - 50px) !important;
+        background: url("asset/images/bubble2.gif");
+        bottom: -150px;
+        left: 50%;
+        transform: translateX(-50%);
         width: 90px;
         z-index: 99;
         
